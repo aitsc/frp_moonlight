@@ -25,7 +25,7 @@
 3. 修改为自己的服务器ip+公网tcp端口: config/streaming/frpc.ini
 
 # 然后: 进入当前目录执行步骤
-0. 如果需要赋予权限: chmod 777 -R .
+0. 如果需要赋予权限: chmod -R 777 .
 1. server: ./soft/linux_64/frps -c ./config/server/frps.ini
 2. client: 3种机器
    - win: .\soft\win_64\frps -c .\config\client\frps.ini
