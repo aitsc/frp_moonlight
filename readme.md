@@ -17,6 +17,7 @@
       - TCP 47984, 47989, 48010
       - UDP 47998, 47999, 48000, 48002, 48010
   - 最终client上填写的串流ip: 127.0.0.1
+  - 原理图: <img src="img.png" width = "250" alt="" align=center />
 - 文件基于 frp v0.42.0: https://github.com/fatedier/frp
 
 # 首先: 进入配置文件修改为自己的ip和端口
