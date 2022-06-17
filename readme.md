@@ -1,3 +1,13 @@
+# 利用现有的frp内网穿透工具实现公网串流
+- 借助：免费的frp内网穿透工具（例如[natfrp](https://www.natfrp.com)）、frp
+1. client 控制端，进入当前目录：
+    - 如果是 mac，终端运行：./soft/mac_intel/frps -c ./config/client/frps2.ini
+    - 如果是 win，CMD运行：.\soft\win_64\frpc -c .\config\client\frps2.ini
+    - 开启本地的frp内网穿透工具，隧道的本地端口设置为14000
+2. streaming(win) 被控端:
+    - 找到穿透工具的公网ip和对外端口，修改到 ./config/streaming/frpc4.ini
+    - 进入当前目录，CMD运行：.\soft\win_64\frpc -c .\config\streaming\frpc4.ini
+3. 最终client上填写的串流ip: 127.0.0.1
 # 利用向日葵远程ssh实现公网串流
 - 优势：带宽较高（几十兆带宽以上），不需要买服务器，不限流量，一年1百多（向日葵精英版）
 - 借助：向日葵、frp
@@ -31,7 +41,7 @@
 # 利用只有一个公开端口的服务器实现公网串流
 ## 介绍
 - 公网nat服务器用于frp穿透串流moonlight, server端口不能用8个固定串流端口或一台server串流多个win时的解决方案
-- 只需要任意1个公网tcp端口, 基于frp: server和client端各开6和9个内部端口即可, 除了client内部8串流端口固定, 其他端口随意
+- 只需要任意1个公网tcp端口访问frps, 基于frp: server和client端各开6和9个内部端口即可, 除了client内部8串流端口固定, 其他端口随意
   - server
       - frps 监听: xx, 4001-4005 (win.frpc), 4000 (client.frpc)
       - frpc 访问: 4000
