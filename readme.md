@@ -1,5 +1,6 @@
 # 利用向日葵远程ssh实现公网串流
 - 优势：带宽较高（几十兆带宽以上），不需要买服务器，不限流量，一年1百多（向日葵精英版）
+- 借助：向日葵、frp
 1. streaming(win) 被控端:
     - 安装ubuntu虚拟机，在里面安装并登录向日葵
 2. client 控制端：
@@ -16,6 +17,19 @@
     - 从任务管理器中查看当前使用网卡的ip，修改到 ./config/streaming/frpc2.ini
     - ubuntu虚拟机进入当前目录，终端运行：./soft/linux_64/frpc -c ./config/streaming/frpc2.ini
 4. 最终client上填写的串流ip: 127.0.0.1
+# 利用不开放端口只能连接的公网服务器实现公网串流
+- 借助：公网服务器、ssh、frp
+1. client 控制端：
+    - 如果是 mac：
+      - 进入当前目录，终端运行：./soft/mac_intel/frps -c ./config/client/frps.ini
+      - 终端运行：ssh 服务器用户名@服务器IP -p 服务器端口 -R 4000:127.0.0.1:4000
+    - 如果是 win：
+      - 进入当前目录，CMD运行：.\soft\win_64\frpc -c .\config\client\frps.ini
+      - CMD运行：ssh 服务器用户名@服务器IP -p 服务器端口 -R 4000:127.0.0.1:4000
+2. streaming(win) 被控端:
+    - 进入当前目录，CMD运行：.\soft\win_64\frpc -c .\config\streaming\frpc3.ini
+    - CMD运行：ssh 服务器用户名@服务器IP -p 服务器端口 -L 4000:127.0.0.1:4000
+3. 最终client上填写的串流ip: 127.0.0.1
 # 利用只有一个公开端口的服务器实现公网串流
 ## 介绍
 - 公网nat服务器用于frp穿透串流moonlight, server端口不能用8个固定串流端口或一台server串流多个win时的解决方案
