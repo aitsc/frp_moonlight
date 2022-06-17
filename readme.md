@@ -20,13 +20,10 @@
 # 利用不开放端口只能连接的公网服务器实现公网串流
 - 优势：任何一台你能ssh访问的公网服务器都行，不需要对服务器做任何配置
 - 借助：公网服务器、ssh、frp
-1. client 控制端：
-    - 如果是 mac：
-      - 进入当前目录，终端运行：./soft/mac_intel/frps -c ./config/client/frps.ini
-      - 终端运行：ssh 服务器用户名@服务器IP -p 服务器端口 -R 4000:127.0.0.1:4000
-    - 如果是 win：
-      - 进入当前目录，CMD运行：.\soft\win_64\frpc -c .\config\client\frps.ini
-      - CMD运行：ssh 服务器用户名@服务器IP -p 服务器端口 -R 4000:127.0.0.1:4000
+1. client 控制端，进入当前目录：
+    - 如果是 mac，终端运行：./soft/mac_intel/frps -c ./config/client/frps.ini
+    - 如果是 win，CMD运行：.\soft\win_64\frpc -c .\config\client\frps.ini
+    - 最后终端或CMD运行：ssh 服务器用户名@服务器IP -p 服务器端口 -R 4000:127.0.0.1:4000
 2. streaming(win) 被控端:
     - 进入当前目录，CMD运行：.\soft\win_64\frpc -c .\config\streaming\frpc3.ini
     - CMD运行：ssh 服务器用户名@服务器IP -p 服务器端口 -L 4000:127.0.0.1:4000
