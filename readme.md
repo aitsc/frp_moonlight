@@ -54,3 +54,22 @@
   - udp下载: iperf3 -c 127.0.0.1 -p 48010 -u -l 1k -R
   - tcp上传: iperf3 -c 127.0.0.1 -p 48010
   - tcp下载: iperf3 -c 127.0.0.1 -p 48010 -R
+
+# 其他方式：利用向日葵远程ssh实现公网串流
+- 优势：带宽较高，不需要买服务器，一年1百多（向日葵精英版）
+1. streaming(win) 被控端:
+    - 安装ubuntu虚拟机，在里面安装并登录向日葵
+2. client 控制端：
+    - 首先打开向日葵，ssh连接到安装的ubuntu虚拟机
+    - 然后如果是 mac：
+      - ./soft/mac_intel/frps -c ./config/client/frps.ini
+      - ssh admin@127.0.0.1 -p $(cat /tmp/oray_pipe_*|grep -o '[0-9][0-9][0-9][0-9][0-9]') -R 4000:127.0.0.1:4000
+    - 然后如果是 win：
+      - .\soft\win_64\frpc -c .\config\client\frps.ini
+      - 在任务管理器中查看向日葵SSH的PID，然后检索这个PID对应的端口，终端运行： netstat -ano|findstr G.*PID
+      - ssh admin@127.0.0.1 -p 查到的端口 -R 4000:127.0.0.1:4000
+    - **admin 修改为你的ubuntu虚拟机用户名**
+3. streaming(win) 被控端:
+    - 从任务管理器中查看当前使用网卡的ip，修改到 ./config/streaming/frpc2.ini
+    - ubuntu虚拟机：./soft/linux_64/frpc -c ./config/streaming/frpc2.ini
+4. 最终client上填写的串流ip: 127.0.0.1
