@@ -18,6 +18,7 @@
     - ubuntu虚拟机进入当前目录，终端运行：./soft/linux_64/frpc -c ./config/streaming/frpc2.ini
 4. 最终client上填写的串流ip: 127.0.0.1
 # 利用不开放端口只能连接的公网服务器实现公网串流
+- 优势：任何一台你能ssh访问的公网服务器都行，不需要对服务器做任何配置
 - 借助：公网服务器、ssh、frp
 1. client 控制端：
     - 如果是 mac：
