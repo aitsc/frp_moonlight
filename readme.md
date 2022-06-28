@@ -95,4 +95,18 @@
   - tcp上传: iperf3 -c 127.0.0.1 -p 48010
   - tcp下载: iperf3 -c 127.0.0.1 -p 48010 -R
 
+# frp tls 设置
+```shell
+openssl genrsa -out openssl.key 4096
+openssl req -new -x509 -key openssl.key -out openssl.crt -days 36500 -subj /CN=nMyXsEG244w.wns.windows.com
+# frps
+tls_only = true
+tls_cert_file = ./openssl.crt
+tls_key_file = ./openssl.key
+# frpc
+tls_enable = true
+tls_trusted_ca_file = ./openssl.crt
+tls_server_name = nMyXsEG244w.wns.windows.com
+```
+
 # 文件基于 frp v0.42.0: https://github.com/fatedier/frp
