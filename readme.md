@@ -107,6 +107,8 @@ tls_key_file = ./openssl.key
 tls_enable = true
 tls_trusted_ca_file = ./openssl.crt
 tls_server_name = nMyXsEG244w.wns.windows.com
+# 启动frpc之前
+export GODEBUG=x509ignoreCN=0
 ```
 
 # 文件基于 frp v0.42.0: https://github.com/fatedier/frp
