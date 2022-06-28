@@ -38,6 +38,9 @@
     - 进入当前目录，CMD运行：.\soft\win_64\frpc -c .\config\streaming\frpc3.ini
     - CMD运行：ssh 服务器用户名@服务器IP -p 服务器端口 -L 4000:127.0.0.1:4000
 3. 最终client上填写的串流ip: 127.0.0.1
+## 密钥登录
+- 服务器：mkdir .ssh && cd .ssh && ssh-keygen -t rsa -b 4096 && cat id_rsa.pub
+- 本地：vim ~/.ssh/authorized_keys
 # 利用只有一个公开端口的服务器实现公网串流
 ## 介绍
 - 公网nat服务器用于frp穿透串流moonlight, server端口不能用8个固定串流端口或一台server串流多个win时的解决方案
