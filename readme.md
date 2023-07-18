@@ -53,7 +53,7 @@
       - frpc 访问: xx
           - 转发: 4001-4005 → 8串流
   - client
-      - frps 监听: 1000, 8串流 (server.frpc)
+      - frps 监听: 4000, 8串流 (server.frpc)
       - frpc 访问: xx
           - 转发: 4000 → 4000
   - 启动顺序: server.frps, client.frps → win.frpc, client.frpc → server.frpc
